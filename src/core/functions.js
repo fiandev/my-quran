@@ -4,10 +4,12 @@ let audios = []
 const playMurottal = (source, ayahNumber) => {
   for (let i = 0; i < audios.length; i++) {
     /* found played audio */
-    if (audios[i].duration > 0 && audios[i].played) {
-      audios[i].pause()
+    /*
+    if (audios[i].data.duration > 0 && !audios[i].data.paused) {
+      audios[i].data.pause()
     }
     
+    */
     if (audios[i].id === Number(ayahNumber)) {
       const audio = audios[i]
       if (audio.data.duration > 0 && !audio.data.paused) {
@@ -27,7 +29,6 @@ const playMurottal = (source, ayahNumber) => {
             id: Number(ayahNumber),
             data: newAudio
           })
-      return true
     }
   }
   if (audios.length < 1) {
