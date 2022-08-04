@@ -17,6 +17,6 @@
 
 ### demo
 
-[lihat demo program ini](/)
+[lihat demo program ini](https://my-quran-seven.vercel.app/)
 
 > dibuat oleh **Fian**
