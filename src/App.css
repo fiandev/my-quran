@@ -1,38 +1,138 @@
-.App {
-  text-align: center;
+*, p {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 5% 0;
+  overflow-x: scroll;
+}
+:root {
+  --blue: #00ccff;
+  --white: #ffffff;
+  --lightDark: #e3edef;
+  --black: #000000;
+  --small: .6rem;
+  --small: .8rem;
+}
+a {
+  text-decoration: none;
+  color: inherit
 }
 
-.App-link {
-  color: #61dafb;
+#home .nav-link {
+  text-decoration: none;
+  padding: 2% 5%;
+  color: var(--blue);
+  border: solid .1px var(--blue);
+  text-transform: uppercase;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#home .nav-link:hover {
+  border: solid 1px var(--blue);
+  background-color: var(--white);
+  box-shadow: 2px 2px var(--blue);
+}
+
+#tab .tabs {
+  width: 30%;
+  text-decoration: none;
+  padding: 2%;
+  font-size: var(--medium);
+}
+
+#tab .tabs.active {
+  border-bottom: solid 5px var(--blue);
+}
+
+#quran header {
+  width: 100%;
+  color: var(--small);
+}
+
+#quran .icon-number {
+  border: solid .1px var(--blue);
+  color: var(--blue);
+  font-size: var(--small);
+  width: 40px;
+  height: 40px;
+}
+
+.pages {
+  margin-top: 25vw;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+#quran section {
+  width: 100vw;
+}
+#quran section .detail .title {
+  color: var(--blue);
+  font-size: var(--medium);
+}
+#quran section .detail .subtitle {
+  font-size: var(--small);
+  color: #000;
+}
+#quran .detail {
+  width: 80%;
+}
+#quran .ayah-container {
+  width: 100%;
+}
+#quran .ayah {
+  width: 80%;
+}
+
+#quran .dl-btn {
+  width: 20%;
+  border: solid .1px var(--blue);
+  color: var(--blue);
+  transition: .4s all;
+}
+#quran .dl-btn:hover {
+  width: 20%;
+  border: none;
+  background-color: var(--blue);
+  color: var(--white);
+}
+#quran .list-link {
+  text-decoration: none;
+  transition: 1s;
+}
+#quran .list-link:hover {
+  border-left: solid 5px var(--blue);
+  background-color: var(--lightDark);
+  padding: 0 5%;
+}
+
+#quran .ayah .arabic {
+  font-size: var(--medium);
+}
+#quran .ayah .translate {
+  font-size: var(--small);
+  
+}
+#quran .marked {
+  color: var(--blue);
+}
+/*
+#quran .marked:hover {
+  color: var(--lightDark);
+}
+#quran .un-marked:hover {
+  color: var(--blue);
+}
+*/
+#quran .un-marked {
+  color: var(--lightDark);
+}
+
+.bookmark-empty {
+  min-height: 30vh;
+}
+.bookmark-empty p {
+  color: var(--blue);
 }

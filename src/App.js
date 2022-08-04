@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import logo from './logo.svg'
+import "./App.css"
+import Home from './components/Home'
+import Tabs from './components/Tabs'
+import Read from './components/Read'
+import Read_Juz from './components/Read_Juz'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    surahs: []
+  }
+  render () {
+    return (
+      <Router>
+       <Routes>
+        <Route path="/" element={ <Home /> } />
+        <Route path="/home" element={ <Tabs /> } />
+        <Route path="/surah/:surahid" element={ <Read /> } />
+        <Route path="/juz/:juzid" element={ <Read_Juz /> } />
+        <Route path="*" element={ <Home /> } />
+       </Routes>
+      </Router>
+      )
+  }
 }
-
 export default App;
