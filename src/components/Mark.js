@@ -30,7 +30,7 @@ class Mark extends Component {
                <div
                 onClick={ (e) => {
                   bookmark({
-                    surahid: Number(this.props.id.toString().slice(-1)),
+                    surahid: Number(this.props.id),
                     ayah: 1
                   } ,e);
                   this.setState({
