@@ -95,11 +95,34 @@ const changeTab = (tab) => {
   Cookies.set("tab-history", tab)
   return tab
 }
+
+const generateKey = (length = 10) => {
+  let hash = "abcdefgehijklmnopqrstuvwxyz1234567890"
+  let key = ""
+  
+  for (var i = 0; i < length; i++) {
+    key += hash.chartAt(Math.floor(Math.random() * hash.length))
+  }
+  return key
+}
+let scrollDelay
+let heightScroll = 60
+const pageScroll = (isActive = true) => {
+    if (!isActive) {
+      clearTimeout(scrollDelay)
+      return false
+    }
+    window.scrollBy(0, heightScroll);
+    scrollDelay = setTimeout(pageScroll, 2000);
+}
+
 export { 
   playMurottal, 
   bookmark, 
   deleteBookmark, 
   hasBookmarked, 
   handler,
-  changeTab
+  changeTab,
+  generateKey,
+  pageScroll
 }

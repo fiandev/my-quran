@@ -21,7 +21,7 @@ class Tabs extends Component {
   render () {
     return (
         <div id="quran" className="container">
-        <header className="d-flex bg-light fixed-top flex-column justify-content-center">
+        <header className="navigation d-flex flex-column bg-light fixed-top flex-column justify-content-between">
             <div className="d-flex mx-2 justify-content-between"
             >
               <a

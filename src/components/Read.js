@@ -5,7 +5,9 @@ import { faArrowLeft, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import Cookies from 'js-cookie' 
 import Ayah from './Ayah'
-import { bookmark, deleteBookmark, hasBookmarked } from '../core/functions'
+import Scrolldown from './Scrolldown'
+import { bookmark, deleteBookmark, hasBookmarked, generateKey } from '../core/functions'
+
 const Read = (props) => {
   const { surahid } = useParams()
   let [surah, setSurah] = useState([])
@@ -31,31 +33,35 @@ const Read = (props) => {
                 href="/home"
                 className="d-flex gap-2 align-items-center text-decoration-none text-auto">
                  <FontAwesomeIcon icon={ faArrowLeft } />
-                 my quran
+                 { surah !== "404" ? surah.name : "My Qur'an" }
                 </a>
               </div>
-            {
-            surah !== "404" ?
-              hasBookmarked(surahid) 
-              ?
-                 <div
-                  onClick={ (e) => deleteBookmark(surahid, e) }
-                  className="d-flex justify-content-center align-items-center marked p-1"
-                 >
-                  <FontAwesomeIcon icon={ faBookmark } />
-                 </div>
-               :
-                 <div
-                  onClick={ (e) => bookmark({
-                    surahid: surah.number,
-                    ayah: 1
-                  } ,e) }
-                  className="d-flex justify-content-center align-items-center p-1 un-marked"
-                 >
-                  <FontAwesomeIcon icon={ faBookmark } />
-                 </div>
-            : ""
-            }
+              
+              <div className="d-flex gap-2 align-items-center">
+                <Scrolldown key={ () => generateKey() } />
+                {
+                surah !== "404" ?
+                  hasBookmarked(surahid) 
+                  ?
+                     <div
+                      onClick={ (e) => deleteBookmark(surahid, e) }
+                      className="d-flex justify-content-center align-items-center marked p-1"
+                     >
+                      <FontAwesomeIcon icon={ faBookmark } />
+                     </div>
+                   :
+                     <div
+                      onClick={ (e) => bookmark({
+                        surahid: surah.number,
+                        ayah: 1
+                      } ,e) }
+                      className="d-flex justify-content-center align-items-center p-1 un-marked"
+                     >
+                      <FontAwesomeIcon icon={ faBookmark } />
+                     </div>
+                : ""
+              }
+              </div>
            
           </header>
           {

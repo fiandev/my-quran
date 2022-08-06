@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark } from '@fortawesome/free-solid-svg-icons'
-import { bookmark, deleteBookmark, hasBookmarked } from '../core/functions'
+import { hasBookmarked } from '../core/functions'
 import Subtitle from './Subtitle'
 import Download from './Download'
 import Mark from './Mark'
