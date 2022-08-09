@@ -1,0 +1,9 @@
+#home .nav-link {
+  background-color: var(--white);
+  opacity: .6;
+  backdrop-filter: blur(1px);
+}
+#home {
+  background: #fff url("https://images.pexels.com/photos/2344997/pexels-photo-2344997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2") no-repeat center;
+  background-size: cover;
+}

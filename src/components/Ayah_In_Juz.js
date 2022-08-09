@@ -16,7 +16,7 @@ class Ayah_In_Juz extends Component {
   render () {
     return (
         <div className="ayah-container">
-          <div className="list-link d-flex justify-content-between align-items-center gap-3">
+          <div className="d-flex justify-content-between align-items-center gap-3">
               <div className="d-flex flex-column align-items-center justify-content-start gap-2">
                 <div className="d-flex icon-number justify-content-center align-items-center rounded-circle">
                   {`${this.props.ayah.number.inSurah.toString().length < 2 ? "0" + this.props.ayah.number.inSurah : this.props.ayah.number.inSurah}`}
@@ -27,7 +27,7 @@ class Ayah_In_Juz extends Component {
                   key={ this.props.ayah.audio.alafasy }
                 />
               </div>
-              <div className="ayah d-flex flex-column justify-content-center">
+              <div className="ayah list-link d-flex flex-column justify-content-center">
                 <h1 
                 className="arabic text-end"
                 >

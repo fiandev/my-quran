@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import logo from './logo.svg'
 import "./App.css"
+import "./Styles.css"
 import Home from './components/Home'
 import Tabs from './components/Tabs'
 import Read from './components/Read'

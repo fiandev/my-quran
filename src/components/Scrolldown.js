@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome'
-import { faArrowDown, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faArrowDown, faPause } from '@fortawesome/free-solid-svg-icons'
 import { pageScroll } from '../core/functions'
 class Scrolldown extends Component {
   state = {
@@ -34,9 +34,9 @@ class Scrolldown extends Component {
                    });
                   }
                 }
-                className="d-flex justify-content-center align-items-center p-1 un-marked"
+                className="d-flex justify-content-center align-items-center marked p-1"
                >
-                <FontAwesomeIcon icon={ faPlay } />
+                <FontAwesomeIcon icon={ faPause } />
                </div>
          }
         </div>

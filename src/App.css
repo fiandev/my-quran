@@ -33,9 +33,10 @@ a {
 }
 
 #home .nav-link:hover {
-  border: solid 1px var(--blue);
-  background-color: var(--white);
-  box-shadow: 2px 2px var(--blue);
+  color: var(--white);
+  border: solid 1px var(--white);
+  background-color: var(--blue);
+  box-shadow: 2px 2px var(--white);
 }
 
 #tab .tabs {
@@ -118,14 +119,7 @@ a {
 #quran .marked {
   color: var(--blue);
 }
-/*
-#quran .marked:hover {
-  color: var(--lightDark);
-}
-#quran .un-marked:hover {
-  color: var(--blue);
-}
-*/
+
 #quran .un-marked {
   color: var(--lightDark);
 }

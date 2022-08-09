@@ -21,7 +21,7 @@ const Read = (props) => {
       setSurah("404")
       console.log(`${surahid} not found!`);
     })
-  })
+  }, [])
   
   return (
       <div id="quran" className="container">

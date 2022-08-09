@@ -101,7 +101,7 @@ const generateKey = (length = 10) => {
   let key = ""
   
   for (var i = 0; i < length; i++) {
-    key += hash.chartAt(Math.floor(Math.random() * hash.length))
+    key += hash.charAt(Math.floor(Math.random() * hash.length))
   }
   return key
 }

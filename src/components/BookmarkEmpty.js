@@ -5,7 +5,7 @@ const BookmarkEmpty = (props) => {
       <div className="d-flex justify-content-center align-items-center flex-column bookmark-empty">
         <FontAwesomeIcon icon={ faSmile } />
         <p className="m-0 p-0 text-center text-capitalize">
-          ayat dan surah yang anda tandai akan muncul disini
+          surah yang anda tandai akan muncul disini
         </p>
       </div>
     )

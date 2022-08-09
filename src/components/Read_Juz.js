@@ -5,21 +5,23 @@ import { faArrowLeft, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import Cookies from 'js-cookie' 
 import Ayah_In_Juz from './Ayah_In_Juz'
-import { bookmark, deleteBookmark, hasBookmarked } from '../core/functions'
+import { bookmark, deleteBookmark, hasBookmarked, generateKey } from '../core/functions'
+
 const Read_Juz = (props) => {
   const { juzid } = useParams()
   let [juz, setJuz] = useState([])
   //;https://quran-api-32ouuhnph-renomureza.vercel.app/surahs/1/ayahs/1
   useEffect(() => {
-    if (juz.length > 1) return false
     axios.get(`https://quran-6g54mk0s9-gadingnst.vercel.app/juz/${juzid}`)
     .then(result => {
-      setJuz(result.data)
+      setJuz(result.data.code === 200 ? result.data : "404")
+      console.log(juz);
     })
     .catch(e => {
+      setJuz("404")
       console.log(e);
     })
-  })
+  }, [])
   
   return (
       <div id="quran" className="container">
@@ -31,60 +33,43 @@ const Read_Juz = (props) => {
                 href="/home"
                 className="d-flex gap-2 align-items-center text-decoration-none text-auto">
                  <FontAwesomeIcon icon={ faArrowLeft } />
-                 my quran
+                 { juz !== "404" ? `juz ${juzid}` : "My Qur'an" }
                 </a>
               </div>
-            {
-              hasBookmarked(juzid) 
-              ?
-                 <div
-                  onClick={ (e) => deleteBookmark(juzid, e) }
-                  className="d-flex justify-content-center align-items-center marked p-1"
-                 >
-                  <FontAwesomeIcon icon={ faBookmark } />
-                 </div>
-               :
-                 <div
-                  onClick={ (e) => bookmark({
-                    juzid: juzid,
-                    ayah: 1
-                  } ,e) }
-                  className="d-flex justify-content-center align-items-center p-1 un-marked"
-                 >
-                  <FontAwesomeIcon icon={ faBookmark } />
-                 </div>
-            }
-           
           </header>
           
           {
-            juz.data !== undefined ?
-              <div 
-              className="pages d-flex flex-column gap-2"
-              >
-                <div 
-                className="header-surah m-0 p-0 text-center"
-                >
-                <p>
-                  { `juz ${juzid}` }
-                </p>
+          juz !== "404" ?
+             juz.data ?
+                <div className="pages d-flex flex-column gap-2">
+                  <div className="header-surah m-0 p-0 text-center">
+                  <p>
+                    { `juz ${juzid}` }
+                  </p>
+                  <p>
+                    { `${juz.data.juzStartInfo} ~ ${juz.data.juzEndInfo}` }
+                  </p>
+                  </div>
+                  {
+                      juz.data.verses.map((ayah) => {
+                        return <Ayah_In_Juz
+                        key={ generateKey() }
+                        ayah={ ayah } 
+                        />
+                      })
+                  }
                 </div>
-                {
-                    juz.data.verses.map((ayah) => {
-                      return <Ayah_In_Juz
-                      key={ ayah.number.inSurah }
-                      ayah={ ayah } 
-                      />
-                    })
-                }
-              </div>
-            :
-              <div 
-              className="pages"
-              >
-                <div 
-                className="header-surah text-center"
-                >
+              :
+                <div className="pages">
+                  <div className="header-surah text-center">
+                  <p>
+                    { `memuat juz ${juzid}` }
+                  </p>
+                  </div>
+                </div>
+             :
+              <div className="pages">
+                <div className="header-surah text-center">
                 <p>
                   { `juz ${juzid} not found!` }
                 </p>
