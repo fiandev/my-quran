@@ -21,7 +21,7 @@ class List extends Component {
             >
               <div className="d-flex py-2 detail align-items-center gap-2">
                   <div className="d-flex icon-number justify-content-center align-items-center rounded-circle">
-                    { this.props.number }
+                    { this.props.number.length < 2 ? "0" + this.props.number : this.props.number  }
                   </div>
                   <div className="d-flex flex-column justify-content-center align-items-start">
                     <h1 className="title">
