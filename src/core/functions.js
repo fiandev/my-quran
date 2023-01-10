@@ -1,65 +1,45 @@
-import Cookies from 'js-cookie' 
+import Cookies from 'js-cookie';
 
-let audios = []
-const playMurottal = (source, ayahNumber) => {
+const audios = [];
+
+export const playMurottal = async (source, ayahNumber) => {
+  let newAudio = new Audio();
+      newAudio.src = source;
+      newAudio.play();
+  
+  audios.push({
+    id: Number(ayahNumber),
+    sound: newAudio
+  });
+  
+  return newAudio;
+}
+
+export const stopMurrotal = (ayahNumber) => {
   for (let i = 0; i < audios.length; i++) {
-    /* found played audio */
-    /*
-    if (audios[i].data.duration > 0 && !audios[i].data.paused) {
-      audios[i].data.pause()
-    }
-    
-    */
-    if (audios[i].id === Number(ayahNumber)) {
-      const audio = audios[i]
-      if (audio.data.duration > 0 && !audio.data.paused) {
-        audio.data.pause()
-      } else {
-        if (audio.data.paused) {
-          audio.data.play()
-        }
-      }
-      audios[i].data = audio.data
-    }
-    if (i === audios.length - 1 && audios[i].id !== Number(ayahNumber)) {
-      let newAudio = new Audio()
-          newAudio.src = source
-          newAudio.play()
-          audios.push({
-            id: Number(ayahNumber),
-            data: newAudio
-          })
-    }
-  }
-  if (audios.length < 1) {
-    let newAudio = new Audio()
-        newAudio.src = source
-        newAudio.play()
-        audios.push({
-          id: Number(ayahNumber),
-          data: newAudio
-        })
-    return true
+    if (audios[i].id === Number(ayahNumber)) audios[i].sound.pause();
+    else continue;
   }
 }
 
-const bookmark = (data, e) => {
+export const bookmark = (data, e) => {
   if (!Cookies.get("bookmark")) {
     Cookies.set("bookmark", JSON.stringify([{
       surahid: data.surahid,
       ayah: data.ayah,
-    }]))
+    }]));
   } else {
-    let cookie = JSON.parse(Cookies.get("bookmark"))
+    let cookie = JSON.parse(Cookies.get("bookmark"));
     cookie.push({
       surahid: data.surahid,
       ayah: data.ayah,
     })
     
-    Cookies.set("bookmark", JSON.stringify(cookie))
+    Cookies.set("bookmark", JSON.stringify(cookie));
   }
 }
-const deleteBookmark = (surahid, e) => {
+
+export const deleteBookmark = (surahid, e) => {
   let cookie = JSON.parse(Cookies.get("bookmark"))
   console.log(cookie, surahid);
   cookie.forEach((data, i) => {
@@ -70,7 +50,7 @@ const deleteBookmark = (surahid, e) => {
   })
 }
 
-const hasBookmarked = (surahid) => {
+export const hasBookmarked = (surahid) => {
   if (!Cookies.get("bookmark")) return false
 
   let cookie = JSON.parse(Cookies.get("bookmark"))
@@ -86,17 +66,18 @@ const hasBookmarked = (surahid) => {
   
   return result
 }
-const handler = (e, options) => {
+
+export const handler = (e, options) => {
   const target = e.target
   if (options === "remove") target.parent().remove()
 }
 
-const changeTab = (tab) => {
+export const changeTab = (tab) => {
   Cookies.set("tab-history", tab)
   return tab
 }
 
-const generateKey = (length = 10) => {
+export const generateKey = (length = 10) => {
   let hash = "abcdefgehijklmnopqrstuvwxyz1234567890"
   let key = ""
   
@@ -105,9 +86,10 @@ const generateKey = (length = 10) => {
   }
   return key
 }
-let scrollDelay
-let heightScroll = 60
-const pageScroll = (isActive = true) => {
+
+let scrollDelay;
+let heightScroll = 60;
+export const pageScroll = (isActive = true) => {
     if (!isActive) {
       clearTimeout(scrollDelay)
       return false
@@ -116,13 +98,35 @@ const pageScroll = (isActive = true) => {
     scrollDelay = setTimeout(pageScroll, 2000);
 }
 
-export { 
-  playMurottal, 
-  bookmark, 
-  deleteBookmark, 
-  hasBookmarked, 
-  handler,
-  changeTab,
-  generateKey,
-  pageScroll
+export const getCoordinate = async () => {
+  return await navigator.geolocation.getCurrentPosition();
+}
+
+export const getAddress = ({ latitude, longitude }) => {
+    return new Promise(function (resolve, reject) {
+        var request = new XMLHttpRequest();
+
+        var method = 'GET';
+        var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&sensor=true';
+
+        request.open(method, url, true);
+        request.onreadystatechange = function () {
+            if (request.readyState == 4) {
+                if (request.status == 200) {
+                    var data = JSON.parse(request.responseText);
+                    var address = data.results[0];
+                    resolve(address);
+                }
+                else {
+                    reject(request.status);
+                }
+            }
+        };
+        request.send();
+    });
+}
+
+
+export const getDateNow = (now = new Date()) => {
+  return `${ now.getFullYear() }-${ now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1).toString() : now.getMonth() + 1 }-${ now.getDate().length === 1 ? "0" + now.getDate() : now.getDate() }`;
 }

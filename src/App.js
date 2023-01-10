@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Tabs from './components/Tabs'
 import Read from './components/Read'
 import Read_Juz from './components/Read_Juz'
+import Schedule from './pages/Schedule'
 
 class App extends Component {
   state = {
@@ -18,6 +19,7 @@ class App extends Component {
        <Routes>
         <Route path="/" element={ <Home /> } />
         <Route path="/home" element={ <Tabs /> } />
+        <Route path="/schedule" element={ <Schedule /> } />
         <Route path="/surah/:surahid" element={ <Read /> } />
         <Route path="/juz/:juzid" element={ <Read_Juz /> } />
         <Route path="*" element={ <Home /> } />

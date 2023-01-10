@@ -7,10 +7,12 @@ import Cookies from 'js-cookie'
 import Ayah from './Ayah'
 import Scrolldown from './Scrolldown'
 import { bookmark, deleteBookmark, hasBookmarked, generateKey } from '../core/functions'
+import Mark from './Mark';
 
 const Read = (props) => {
   const { surahid } = useParams()
   let [surah, setSurah] = useState([])
+  let [hasBookmark, setHasBookmark] = useState(hasBookmarked(props.number));
   
   useEffect(() => {
     axios.get(`https://quran-api-32ouuhnph-renomureza.vercel.app/surahs/${surahid}`)
@@ -41,24 +43,10 @@ const Read = (props) => {
                 <Scrolldown key={ () => generateKey() } />
                 {
                 surah !== "404" ?
-                  hasBookmarked(surahid) 
-                  ?
-                     <div
-                      onClick={ (e) => deleteBookmark(surahid, e) }
-                      className="d-flex justify-content-center align-items-center marked p-1"
-                     >
-                      <FontAwesomeIcon icon={ faBookmark } />
-                     </div>
-                   :
-                     <div
-                      onClick={ (e) => bookmark({
-                        surahid: surah.number,
-                        ayah: 1
-                      } ,e) }
-                      className="d-flex justify-content-center align-items-center p-1 un-marked"
-                     >
-                      <FontAwesomeIcon icon={ faBookmark } />
-                     </div>
+                  <Mark 
+                    key={props.number} 
+                    id={props.number}
+                  />
                 : ""
               }
               </div>

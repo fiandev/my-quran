@@ -22,7 +22,7 @@ class Ayah extends Component {
                   {`${this.props.ayah.number.inSurah.toString().length < 2 ? "0" + this.props.ayah.number.inSurah : this.props.ayah.number.inSurah}`}
                 </div>
                 <MurottalAyah
-                  audio={ this.props.ayah.audio.alafasy }
+                  source={ this.props.ayah.audio.alafasy }
                   ayahNumber={ this.props.ayah.number.inSurah }
                   key={ this.props.ayah.audio.alafasy }
                 />
