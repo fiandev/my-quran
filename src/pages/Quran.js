@@ -3,11 +3,11 @@ import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 import { changeTab } from '../core/functions'
 import Cookies from 'js-cookie' 
-import Surahs from './Surahs'
-import Juz from './Juz'
-import Bookmark from './Bookmark'
+import Surahs from '../components/Surahs'
+import Juz from '../components/Juz'
+import Bookmark from '../components/Bookmark'
 
-class Tabs extends Component {
+export default class Quran extends Component {
   state = {
     tab: Cookies.get("tab-history") ? Number(Cookies.get("tab-history")) : 1
   }
@@ -75,4 +75,3 @@ class Tabs extends Component {
       )
   }
 }
-export default Tabs

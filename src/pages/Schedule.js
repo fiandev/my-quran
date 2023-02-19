@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faLocationDot, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import ListSchedule from "../components/ListSchedule";
@@ -8,7 +9,7 @@ import { getDateNow } from "../core/functions";
 
 const Schedule = () => {
   let [coordinate, setCoordinate] = useState(null);
-  let [address, setAddress] = useState(null);
+  let [cityName, setCityName] = useState(null);
   let [cityCode, setCityCode] = useState(null);
   let [cities, setCities] = useState(null);
   let [schedules, setSchedules] = useState(null);
@@ -29,6 +30,12 @@ const Schedule = () => {
     );
   }
   
+  const getCityCode = (name) => {
+    for (let city of cities) {
+      if (city.nama.toUpperCase() === name.toUpperCase()) return city.id;
+    }
+  }
+  
   const changeDateNow = (e) => {
     let res = getDateNow(e.target.value ? new Date(e.target.value) : new Date());
     setDateNow(res);
@@ -43,16 +50,19 @@ const Schedule = () => {
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=${ coordinate.latitude }+${ coordinate.longitude }&key=${ apikey }`)
       .then(res => res.json())
       .then(data => {
-        if (data.status !== 200) setAddress(null);
-        setAddress(data.results[0]["components"]["ISO_3166-2"]);
+        if (data.status !== 200) setCityName(null);
+        setCityName(data.results[0]["components"]["county"]);
       })
     
   }, [coordinate])
   
   useEffect(() => {
-    if (!address) return;
     // mendapatkan kode kota untuk api sholat 
-  }, [address])
+    if (!cityName) return;
+    let code = getCityCode(cityName);
+    setCityCode(code);
+  }, [cityName]);
+  
   
   useEffect(() => {
     //getCoordinate();
@@ -93,6 +103,7 @@ const Schedule = () => {
       }
       
       setSchedules(result);
+      console.log(schedules)
     });
   }, [cityCode, dateNow]);
   
@@ -108,10 +119,10 @@ const Schedule = () => {
       <div>
         <header className="w-100 py-2 d-flex flex-column bg-light flex-column justify-content-between">
             <div className="d-flex mx-2 justify-content-between">
-              <a href="/" className="d-flex justify-content-center align-items-center text-decoration-none gap-2 text-uppercase">
+              <Link to="/" className="d-flex justify-content-center align-items-center text-decoration-none gap-2 text-uppercase">
                <FontAwesomeIcon icon={ faArrowLeft } />
                my quran
-              </a>
+              </Link>
               
               <div className="d-flex align-items-center gap-2">
                 <label htmlFor="date" className="d-flex flex-column align-items-center justify-content-center">
@@ -134,17 +145,22 @@ const Schedule = () => {
           <div className="col my-2">
             <label className="text-dark text-capitalize"> pilih lokasi </label>
             <select onChange={ (e) => changeCityCode(e) } className="form-select">
-               <option value="" selected>-- pilih lokasi --</option>
+               <option value="">-- pilih lokasi --</option>
               {
                 cities ? cities.map(city => {
-                  return <option data-city={ city.nama } value={ city.id }>{ city.nama }</option>
+                  if (city.id === cityCode) return <option selected data-city={ city.nama } value={ city.id }>{ city.nama }</option>
+                  else return <option data-city={ city.nama } value={ city.id }>{ city.nama }</option>
                 }) : ""
               }
             </select>
           </div>
           
           <div className="px-2">
-            <p className="text-muted m-0">tanggal : { dateNow }</p>
+            {
+              schedules ?
+                <p className="text-muted m-0">tanggal : { schedules.date }</p>
+              : ""
+            }
             <div className="d-flex flex-column gap-2">
               {
                 schedules ? 

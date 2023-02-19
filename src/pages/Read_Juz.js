@@ -1,10 +1,10 @@
 import { Component, useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import Cookies from 'js-cookie' 
-import Ayah_In_Juz from './Ayah_In_Juz'
+import Ayah_In_Juz from '../components/Ayah_In_Juz'
 import { bookmark, deleteBookmark, hasBookmarked, generateKey } from '../core/functions'
 
 const Read_Juz = (props) => {
@@ -29,12 +29,12 @@ const Read_Juz = (props) => {
               <div 
               className="d-flex justify-content-start"
               >
-                <a 
-                href="/home"
-                className="d-flex gap-2 align-items-center text-decoration-none text-auto">
-                 <FontAwesomeIcon icon={ faArrowLeft } />
-                 { juz !== "404" ? `juz ${juzid}` : "My Qur'an" }
-                </a>
+                <Link
+                  to="/home"
+                  className="d-flex gap-2 align-items-center text-decoration-none text-auto">
+                   <FontAwesomeIcon icon={ faArrowLeft } />
+                   { juz !== "404" ? `juz ${juzid}` : "My Qur'an" }
+                </Link>
               </div>
           </header>
           

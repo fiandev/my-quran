@@ -1,24 +1,21 @@
 import { Component } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import logo from './logo.svg'
-import "./App.css"
 import "./Styles.css"
-import Home from './components/Home'
-import Tabs from './components/Tabs'
-import Read from './components/Read'
-import Read_Juz from './components/Read_Juz'
+import "./App.css"
+import Home from './pages/Home'
+import Quran from './pages/Quran'
+import Read from './pages/Read'
+import Read_Juz from './pages/Read_Juz'
 import Schedule from './pages/Schedule'
 
 class App extends Component {
-  state = {
-    surahs: []
-  }
   render () {
     return (
       <Router>
        <Routes>
         <Route path="/" element={ <Home /> } />
-        <Route path="/home" element={ <Tabs /> } />
+        <Route path="/alquran" element={ <Quran /> } />
         <Route path="/schedule" element={ <Schedule /> } />
         <Route path="/surah/:surahid" element={ <Read /> } />
         <Route path="/juz/:juzid" element={ <Read_Juz /> } />

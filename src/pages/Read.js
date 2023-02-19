@@ -1,13 +1,13 @@
 import { Component, useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import Cookies from 'js-cookie' 
-import Ayah from './Ayah'
-import Scrolldown from './Scrolldown'
+import Ayah from '../components/Ayah'
+import Scrolldown from '../components/Scrolldown'
+import Mark from '../components/Mark';
 import { bookmark, deleteBookmark, hasBookmarked, generateKey } from '../core/functions'
-import Mark from './Mark';
 
 const Read = (props) => {
   const { surahid } = useParams()
@@ -31,12 +31,12 @@ const Read = (props) => {
               <div 
               className="d-flex justify-content-start"
               >
-                <a 
-                href="/home"
-                className="d-flex gap-2 align-items-center text-decoration-none text-auto">
-                 <FontAwesomeIcon icon={ faArrowLeft } />
-                 { surah !== "404" ? surah.name : "My Qur'an" }
-                </a>
+                <Link
+                  to="/alquran"
+                  className="d-flex gap-2 align-items-center text-decoration-none text-auto">
+                   <FontAwesomeIcon icon={ faArrowLeft } />
+                   { surah !== "404" ? surah.name : "My Qur'an" }
+                </Link>
               </div>
               
               <div className="d-flex gap-2 align-items-center">

@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 import { hasBookmarked } from '../core/functions'
@@ -13,11 +14,11 @@ class List extends Component {
   render () {
     return (
         <div className="d-flex justify-content-between">
-            <a
-            href={ 
-              "/" + this.props.slug + "/" + this.props.number
-            }
-            className="list-link w-100 d-flex align-items-center "
+            <Link
+              to={ 
+                "/" + this.props.slug + "/" + this.props.number
+              }
+              className="list-link w-100 d-flex align-items-center "
             >
               <div className="d-flex py-2 detail align-items-center gap-2">
                   <div className="d-flex icon-number justify-content-center align-items-center rounded-circle">
@@ -48,7 +49,7 @@ class List extends Component {
               />
               : ""
             }
-            </a>
+            </Link>
             <div className="d-flex align-items-center justify-content-center px-2">
             {
               this.props.slug !== "juz" ?
