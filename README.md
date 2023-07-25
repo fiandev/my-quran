@@ -19,4 +19,4 @@
 
 [lihat demo program ini](https://my-quran-seven.vercel.app/)
 
-> dibuat oleh **Fian**
+> dibuat dengan ♥️ oleh **Fian**
