@@ -1,8 +1,9 @@
 {
+  "version": 2,
   "builds": [
     { 
       "src": "build/**", "use": "@vercel/static"
-    },
+    }
   ],
   "rewrites":  [
     {
