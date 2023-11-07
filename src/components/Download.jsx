@@ -1,17 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloudArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCloudArrowDown } from "@fortawesome/free-solid-svg-icons";
 const Download = (props) => {
   return (
-       <a
-        href={ props.download }
-        target="_blank" 
-        download={ props.filename }
-       >
-        <div className="d-flex dl-btn justify-content-center align-items-center rounded">
-          <FontAwesomeIcon icon={ faCloudArrowDown } />
-        </div>
-      </a>
-    )
-}
+    <a href={props.download} target="_blank" download={props.filename}>
+      <div className="d-flex dl-btn justify-content-center align-items-center rounded">
+        <FontAwesomeIcon icon={faCloudArrowDown} />
+      </div>
+    </a>
+  );
+};
 
-export default Download
+export default Download;

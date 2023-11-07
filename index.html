@@ -1,28 +1,165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="theme-color" content="#121f1f" />
+    <meta name="msapplication-navbutton-color" content="#121f1f" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#121f1f" />
+    <meta name="language" content="Indonesia" />
+    <!-- search engine-->
+    <meta name="google" content="sitelinkssearchbox" />
+    <meta
+      name="keywords"
+      content="Al Qur'an online, quran, online, baca Alquran, terjemahan Alquran, tafsir Alquran, aplikasi Alquran,"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="english" />
+    <meta name="author" content="fiandev" />
+    <meta name="hostname" content="https://my-quran-gray.vercel.app" />
     <meta
       name="description"
-      content="read Al Qur'an online using your smartphone"
+      content="web aplikasi untuk membaca Al Qur'an secara online kapanpun dan di manapun "
     />
-    <link rel="apple-touch-icon" href="/favicon.ico" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:url" content="https://my-quran-gray.vercel.app" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:description" content="{{ $SEO['description'] }}" />
+    <meta
+      property="og:site_name"
+      content="My Qur'an Web aplikasi untuk membaca Al Qur'an secara online"
+    />
+    <meta
+      property="og:title"
+      content="My Qur'an Web aplikasi untuk membaca Al Qur'an secara online"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://my-quran-gray.vercel.app" />
+
+    <!-- Facebook Meta Tags -->
+    <meta
+      property="og:description"
+      content="web aplikasi untuk membaca Al Qur'an secara online kapanpun dan di manapun "
+    />
+    <meta property="og:image" content="/graph.jpg" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="My Qur'an" />
+    <meta property="twitter:url" content="https://my-quran-gray.vercel.app" />
+    <meta
+      name="twitter:title"
+      content="My Qur'an Web aplikasi untuk membaca Al Qur'an secara online"
+    />
+    <meta
+      name="twitter:description"
+      content="web aplikasi untuk membaca Al Qur'an secara online kapanpun dan di manapun "
+    />
+    <meta name="twitter:image" content="/graph.jpg" />
+    <meta name="twitter:image:src" content="/graph.jpg" />
+    <meta
+      name="twitter:title"
+      content="My Qur'an Web aplikasi untuk membaca Al Qur'an secara online"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:restrictions:age" content="13+" />
+    <meta property="og:restrictions:country" content="ID" />
+
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+    <meta property="og:image:secure_url" content="/graph.jpg" />
+    <meta property="og:image:alt" content="My Qur'an photo's" />
+    <meta property="article:section" content="My Qur'an" />
+    <meta property="article:author" content="fiandev" />
+    <meta property="article:tag" content="fiandev" />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://www.google.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.google.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      rel="preconnect"
+      href="https://www.google-analytics.com"
+      crossorigin
+    />
+    <link
+      rel="preconnect"
+      href="https://www.googletagmanager.com"
+      crossorigin
+    />
+    <link rel="preconnect" href="https://stats-g-doubleclick.net" crossorigin />
+
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://www.google.com" />
+
+    <link rel="canonical" href="https://my-quran-gray.vercel.app" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-icon-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/manifest.json" />
-    <title>My Qur'an</title>
+    <meta name="msapplication-TileColor" content="#121f1f" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+
+    <!-- itemprop -->
+    <meta itemprop="image" content="/graph.jpg" />
+    <meta
+      itemprop="name"
+      content="My Qur'an Web aplikasi untuk membaca Al Qur'an secara online"
+    />
+    <!-- Title -->
+    <title>
+      My Qur'an | Web aplikasi untuk membaca Al Qur'an secara online
+    </title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript
+      >Anda harus mengaktifkan Javascript untuk menjalankan aplikasi
+      ini.</noscript
+    >
     <div id="root"></div>
 
     <script src="./src/App.jsx" type="module" charset="utf-8"></script>
-    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
   </body>
 </html>
