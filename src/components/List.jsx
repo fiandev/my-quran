@@ -41,6 +41,8 @@ class List extends Component {
                   </div>
               </div>
           
+            </Link>
+            <div className="d-flex align-items-center justify-content-center px-2">
             {
              this.props.download ?
              <Download
@@ -49,8 +51,6 @@ class List extends Component {
               />
               : ""
             }
-            </Link>
-            <div className="d-flex align-items-center justify-content-center px-2">
             {
               this.props.slug !== "juz" ?
               <Mark 

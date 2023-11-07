@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getDataOnCookie, setDataOnCookie } from '../core/functions'
 import axios from 'axios'
 
 import List from './List'
 
 export default function Surahs () {
-  let [Surahs, setSurahs] = useState(null);
+  let cookieKey = "data-surahs";
+  let [Surahs, setSurahs] = useState(getDataOnCookie(cookieKey) || null);
   
   useEffect(() => {
     axios.get("https://quran-api-32ouuhnph-renomureza.vercel.app/surahs")
     .then(result => {
       setSurahs(result.data)
+      setDataOnCookie(cookieKey, result.data)
     })
     .catch(e => console.log(e))
   }, [])

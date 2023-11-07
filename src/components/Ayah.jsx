@@ -6,10 +6,15 @@ import MurottalAyah from './MurottalAyah'
 class Ayah extends Component {
   state = {
     translate: this.props.ayah.translation,
-    tafsir: this.props.ayah.tafsir.kemenag.short
+    tafsir: this.props.ayah.tafsir.kemenag.short,
+    tafsirOpen: false,
   }
   showTafsir = (e) => {
     let text = e.target.innerHTML
+    this.setState({
+      tafsirOpen: !this.state.tafsirOpen,
+      
+    })
     e.target.innerHTML = text === this.state.translate ? "Tafsir : <br/>" + this.state.tafsir : this.state.translate
   }
   
@@ -27,7 +32,7 @@ class Ayah extends Component {
                   key={ this.props.ayah.audio.alafasy }
                 />
               </div>
-              <div className="list-link ayah d-flex flex-column justify-content-center">
+              <div className={ `list-link ${ this.state.tafsirOpen ? "tafsir-open" : "" } ayah d-flex flex-column justify-content-center` }>
                 <h1 
                 className="arabic text-end"
                 >

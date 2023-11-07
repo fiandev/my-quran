@@ -130,3 +130,25 @@ export const getAddress = ({ latitude, longitude }) => {
 export const getDateNow = (now = new Date()) => {
   return `${ now.getFullYear() }-${ now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1).toString() : now.getMonth() + 1 }-${ now.getDate().length === 1 ? "0" + now.getDate() : now.getDate() }`;
 }
+
+
+export function getDataOnCookie(key) {
+  try {
+    if (!key) throw new Error("key must be exists!");
+    
+    let data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : [];
+  } catch (e) {
+    alert(e.message)
+  }
+}
+
+export function setDataOnCookie (key, data) {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+    return true;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+}

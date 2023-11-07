@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import Surahs from '../components/Surahs'
 import Juz from '../components/Juz'
 import Bookmark from '../components/Bookmark'
+import ToggleTheme from '../partials/ToggleTheme'
 
 export default class Quran extends Component {
   state = {
@@ -21,8 +22,8 @@ export default class Quran extends Component {
   render () {
     return (
         <div id="quran" className="container">
-        <header className="navigation d-flex flex-column bg-light fixed-top flex-column justify-content-between">
-            <div className="d-flex mx-2 justify-content-between"
+        <header className="navigation p-2 d-flex flex-column fixed-top flex-column justify-content-between">
+            <div className="d-flex px-2 justify-content-between"
             >
               <a
               href="/"
@@ -31,6 +32,7 @@ export default class Quran extends Component {
                <FontAwesomeIcon icon={ faArrowLeft } />
                my quran
               </a>
+              <ToggleTheme />
             </div>
             <div id="tab" className="d-flex justify-content-center">
              <span 
