@@ -176,6 +176,9 @@ body.dark #quran section .detail .subtitle {
 body.dark #quran .list-link:hover {
   background-color: var(--gray);
 }
+body.dark .text-modal {
+  color: var(--gray);
+}
 #quran .marked {
   color: var(--blue);
 }

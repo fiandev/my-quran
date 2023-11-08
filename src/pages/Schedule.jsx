@@ -9,7 +9,7 @@ import {
 import ListSchedule from "../components/ListSchedule";
 import NoData from "../components/NoData";
 
-import { getDateNow } from "../core/functions";
+// import { getDateNow } from "../core/functions";
 
 const Schedule = () => {
   let [coordinate, setCoordinate] = useState(null);
@@ -17,7 +17,7 @@ const Schedule = () => {
   let [cityCode, setCityCode] = useState(null);
   let [cities, setCities] = useState(null);
   let [schedules, setSchedules] = useState(null);
-  let [dateNow, setDateNow] = useState(getDateNow(new Date()));
+  let [dateNow, setDateNow] = useState(new Date());
 
   const apikey = "96da74fb062e48809fc5f2871efb7ca1";
 
@@ -41,14 +41,19 @@ const Schedule = () => {
   };
 
   const changeDateNow = (e) => {
-    let res = getDateNow(
-      e.target.value ? new Date(e.target.value) : new Date(),
-    );
+    let res = new Date(e.target.value) || new Date();
     setDateNow(res);
+    console.log({ dateNow, res });
   };
 
   const changeCityCode = (e) => {
-    setCityCode(e.target.value);
+    let id = e.target.value;
+    setCityCode(id);
+    for (let city of cities) {
+      if (city.id === id) {
+        setCityName(city.nama);
+      }
+    }
   };
 
   useEffect(() => {
@@ -80,16 +85,21 @@ const Schedule = () => {
   }, []);
 
   useEffect(() => {
-    if (!cityCode) return;
+    if (!cityName || !dateNow) return;
 
     fetch(
-      `https://api.banghasan.com/sholat/format/json/jadwal/kota/${cityCode}/tanggal/${dateNow}`,
+      `https://api.aladhan.com/v1/calendarByAddress/${dateNow.getFullYear()}/${(
+        dateNow.getMonth() + 1
+      )
+        .toString()
+        .padStart(2)}?address=${cityName}&method=2}`,
     )
       .then((res) => res.json())
       .then((json) => {
-        if (!json || json.status !== "ok") return;
-
-        let data = json.jadwal.data;
+        if (!json || json.status.toLowerCase() !== "ok") return;
+        let date = dateNow.getDate();
+        let data = json.data[date - 1];
+        console.log(data);
         let result = {
           date: "",
           data: [],
@@ -97,22 +107,19 @@ const Schedule = () => {
         if (typeof data !== "object") {
           result["data"] = [];
         } else {
-          for (let key in data) {
-            if (key === "tanggal") {
-              result["date"] = data[key];
-            } else {
-              result["data"].push({
-                description: key,
-                time: data[key],
-              });
-            }
+          result.date = data.date.readable;
+          for (let key in data.timings) {
+            result["data"].push({
+              description: key,
+              time: data.timings[key],
+            });
           }
         }
 
         setSchedules(result);
         console.log(schedules);
       });
-  }, [cityCode, dateNow]);
+  }, [cityName, dateNow]);
 
   useEffect(() => {}, [schedules]);
 
